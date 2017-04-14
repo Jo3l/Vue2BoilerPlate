@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Metal+Mania');
+        #content {
+            width: 948px;
+            padding: 12px 0 0;
+            margin: 0 auto;
+        }
+        
+        @media only screen and (min-width: 1200px) {
+            #content {
+                width: 1188px;
+            }
+        }
+        
+        @media only screen and (max-width: 954px) {
+            #content {
+                width: 708px;
+            }
+        }
+        
+        @media only screen and (max-width: 640px) {
+            #content {
+                width: 100%;
+            }
+        }
+        
+        .metalGame {
+            font-family: 'Metal Mania', cursive;
+            width: 100%;
+            height: 619px;
+            background-image: url(background.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+            cursor: url(stick.png), auto;
+        }
+        
+        .metalGame * {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-user-drag: none;
+            user-drag: none;
+            -webkit-touch-callout: none;
+        }
+        
+        .metalGame .stage {
+            width: 100%;
+            height: 619px;
+            background-image: url(stage.png);
+            background-repeat: no-repeat;
+            background-position: 50% 100%;
+            position: absolute;
+            z-index: 99;
+        }
+        
+        .metalGame .top-lights {
+            width: 100%;
+            height: 619px;
+            background-image: url(top-lights.png);
+            background-repeat: no-repeat;
+            background-position: 50% 0%;
+            position: absolute;
+            z-index: 99;
+        }
+        
+        .metalGame .focus1 {
+            position: absolute;
+            z-index: 94;
+            top: -10px;
+            left: 5%;
+            animation: focus 40s ease infinite normal;
+            transform-origin: top;
+        }
+        
+        .metalGame .focus2 {
+            position: absolute;
+            z-index: 94;
+            top: -10px;
+            left: 25%;
+            animation: focus 10s ease infinite normal;
+            transform-origin: top;
+        }
+        
+        .metalGame .focus3 {
+            position: absolute;
+            z-index: 94;
+            top: -10px;
+            right: 15%;
+            animation: focus 30s ease infinite normal;
+            transform-origin: top;
+        }
+        
+        .metalGame .focus4 {
+            position: absolute;
+            z-index: 94;
+            top: -10px;
+            right: 5%;
+            animation: focus 15s ease infinite normal;
+            transform-origin: top;
+        }
+        
+        .metalGame .front-cloud {
+            width: 100%;
+            height: 619px;
+            background-image: url(front-cloud.png);
+            background-repeat: no-repeat;
+            background-position: 50% 100%;
+            position: absolute;
+            z-index: 98;
+        }
+        
+        .metalGame .people1 {
+            width: 100%;
+            height: 619px;
+            background-image: url(people1.png);
+            background-repeat: no-repeat;
+            background-position: 50% 100%;
+            position: absolute;
+            z-index: 97;
+        }
+        
+        .metalGame .people2 {
+            width: 100%;
+            height: 619px;
+            background-image: url(people2.png);
+            background-repeat: no-repeat;
+            background-position: 50% 100%;
+            position: absolute;
+            z-index: 96;
+        }
+        
+        .metalGame .mid-cloud {
+            width: 100%;
+            height: 619px;
+            background-image: url(mid-cloud.png);
+            background-repeat: no-repeat;
+            background-position: 50% 75%;
+            position: absolute;
+            z-index: 95;
+        }
+        
+        .metalGame .people3 {
+            width: 100%;
+            height: 619px;
+            background-image: url(people3.png);
+            background-repeat: no-repeat;
+            background-position: 50% 100%;
+            position: absolute;
+            z-index: 94;
+        }
+        
+        .metalGame .people4 {
+            width: 100%;
+            height: 619px;
+            background-image: url(people4.png);
+            background-repeat: no-repeat;
+            background-position: 50% 100%;
+            position: absolute;
+            z-index: 93;
+        }
+        
+        .metalGame .people5 {
+            width: 100%;
+            height: 619px;
+            background-image: url(people5.png);
+            background-repeat: no-repeat;
+            background-position: 50% 100%;
+            position: absolute;
+            z-index: 92;
+        }
+        
+        .metalGame .background-cloud {
+            width: 100%;
+            height: 619px;
+            background-image: url(background-cloud.png);
+            background-repeat: no-repeat;
+            background-position: 50% 40%;
+            position: absolute;
+            z-index: 93;
+            opacity: 0.4;
+        }
+        
+        .metalGame .people6 {
+            width: 100%;
+            height: 619px;
+            background-image: url(people6.png);
+            background-repeat: no-repeat;
+            background-position: 50% 100%;
+            position: absolute;
+            z-index: 90;
+        }
+        
+        .metalGame h2 {
+            margin: 0;
+            color: white;
+            font-size: 70px;
+        }
+        
+        .metalGame h2 span {
+            font-size: 70px;
+        }
+        
+        .metalGame p {
+            margin: 0;
+            font-size: 24px;
+            color: white;
+        }
+        
+        .metalGame p span {
+            font-size: 24px;
+        }
+        
+        .metalGame .start-overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 999;
+        }
+        
+        .metalGame .start-overlay .start-info {
+            width: 100%;
+        }
+        
+        .metalGame .start-overlay .enter-button,
+        .metalGame .start-overlay .start-button {
+            font-family: 'Metal Mania', cursive;
+            display: block;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            margin-top: 10%;
+            border-radius: 100%;
+            box-shadow: 2px 2px 2px #391e00;
+            background-color: #ef7d00;
+            border: 2px solid #ef7d00;
+            color: white;
+            text-transform: uppercase;
+            font-size: 20px;
+            outline: none;
+            cursor: url(metalHand.png), auto;
+        }
+        
+        .metalGame .start-overlay .start-button.small {
+            padding: 6px;
+            display: block!important;
+            width: initial;
+            height: initial;
+            border-radius: 5px;
+            margin: 30px auto;
+        }
+        
+        .metalGame .start-overlay .enter-button:focus,
+        .metalGame .start-overlay .enter-button:hover,
+        .metalGame .start-overlay .start-button:focus,
+        .metalGame .start-overlay .start-button:hover {
+            border: 2px solid white;
+        }
+        
+        .metalGame .start-overlay .top-scores .yourScore {
+            display: none;
+            margin-top: 90px;
+            text-align: center;
+            color: #fff;
+            font-size: 30px;
+        }
+        
+        .metalGame .start-overlay .yourScore span {
+            font-size: 34px;
+        }
+        
+        .metalGame .char-container {
+            position: absolute;
+            padding-top: 100px;
+            overflow: hidden;
+        }
+        
+        .metalGame .char-container-1 {
+            bottom: 17%;
+            left: 42%;
+            z-index: 100;
+        }
+        
+        .metalGame .char-container-2 {
+            bottom: 30%;
+            left: 13%;
+            z-index: 100;
+        }
+        
+        .metalGame .char-container-3 {
+            bottom: 12%;
+            left: 20%;
+            z-index: 100;
+        }
+        
+        .metalGame .char-container-4 {
+            bottom: 25%;
+            left: 30%;
+            z-index: 100;
+        }
+        
+        .metalGame .char-container-5 {
+            bottom: 35%;
+            z-index: 100;
+        }
+        
+        .metalGame .char-container-6 {
+            bottom: 40%;
+            left: 57%;
+            z-index: 100;
+        }
+        
+        .metalGame .char-container-7 {
+            bottom: 12%;
+            left: 58%;
+            z-index: 100;
+        }
+        
+        .metalGame .char-container-8 {
+            bottom: 15%;
+            left: 80%;
+            z-index: 100;
+        }
+        
+        .metalGame .char-container-9 {
+            bottom: 32%;
+            left: 72%;
+            z-index: 100;
+        }
+        
+        .metalGame .char {
+            width: 140px;
+            height: 40px;
+        }
+        
+        .metalGame .counterTime {
+            position: absolute;
+            left: 2%;
+            bottom: 10px;
+            z-index: 1000;
+        }
+        
+        .metalGame .counterPoints {
+            position: absolute;
+            right: 2%;
+            bottom: 10px;
+            z-index: 1000;
+        }
+        
+        .metalGame footer p {
+            font-size: 30px;
+        }
+        
+        .metalGame footer span {
+            font-size: 35px;
+        }
+        
+        .metalGame .character-image {
+            display: none;
+            position: relative;
+            bottom: -100%;
+            margin-top: 40px;
+            z-index: 20;
+            text-align: center;
+        }
+        
+        .metalGame .character-image img {
+            width: auto;
+            height: 185px;
+        }
+        
+        .metalGame .character-image .kapow,
+        .metalGame .character-image .sorry {
+            width: 100%;
+            height: auto;
+            position: relative;
+            top: -70px;
+        }
+        
+        .metalGame .character-image .lose-points {
+            color: #A41111;
+            font-style: bold;
+        }
+        
+        .metalGame .character-image p {
+            position: relative;
+            top: -70px;
+            font-size: 40px;
+        }
+        
+        .metalGame .jump1 {
+            animation: jump 1s ease infinite normal;
+            animation-delay: 0.1s;
+        }
+        
+        .metalGame .jump2 {
+            animation: jump 1s ease infinite normal;
+            animation-delay: 0.2s;
+        }
+        
+        .metalGame .jump3 {
+            animation: jump 1s ease infinite normal;
+            animation-delay: 0.3s;
+        }
+        
+        .metalGame .jump4 {
+            animation: jump 1s ease infinite normal;
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes jump {
+            0% {
+                transform: translateY(0);
+            }
+            58% {
+                transform: translateY(-30px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes focus {
+            0% {
+                transform: rotate(-30deg);
+            }
+            50% {
+                transform: rotate(30deg);
+            }
+            100% {
+                transform: rotate(-30deg);
+            }
+        }
+        
+        .metalGame #player {
+            height: 0;
+            width: 0
+        }
+        
+        .metalGame .speaker {
+            background-image: url(speaker.png);
+            background-repeat: no-repeat;
+            background-size: 200%;
+            background-position: 100% 0;
+            height: 32px;
+            width: 32px;
+            cursor: url(metalHand.png), auto;
+            display: block;
+            position: absolute;
+            bottom: 10px;
+            left: 48.5%;
+            z-index: 1000;
+        }
+        
+        .metalGame .speakerplay {
+            background-position: 0 0;
+        }
+        
+        .metalGame .points-awarded {
+            -moz-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        .metalGame .signup {
+            width: 50%;
+            margin: 0 auto;
+            display: none;
+            margin-top: 0;
+        }
+        
+        .metalGame .signup p {
+            text-align: center;
+            padding: 10px;
+        }
+        
+        .metalGame form {
+            display: block;
+            width: 200px;
+            margin: 0 auto;
+        }
+        
+        .metalGame label,
+        .metalGame input {
+            display: block;
+            width: 100%;
+            margin: 5px 0;
+            cursor: url(metalHand.png), auto;
+        }
+        
+        .metalGame label {
+            color: white;
+        }
+        
+        .metalGame input {
+            padding: 8px;
+            font-size: 16px;
+        }
+        
+        .metalGame .submit-btn {
+            position: relative;
+            display: inline-block;
+            height: 26px;
+            color: #fff;
+            font-family: 'Metal Mania', cursive;
+            font-size: 17px;
+            font-weight: 400;
+            opacity: 1;
+            text-transform: none;
+            background: #ef7c00;
+            padding: 0 10px;
+            border: 0;
+            cursor: url(metalHand.png), auto;
+        }
+        
+        @media screen\0 {
+            .metalGame,
+            .metalGame * {
+                cursor: default!important;
+            }
+        }
+        
+        @supports (-ms-ime-align:auto) {
+            .metalGame,
+            .metalGame * {
+                cursor: default!important;
+            }
+        }
+
+    </style>
+</head>
+
+<body style="cursor: default;">
+    <div id="content">
+        <div class="metalGame">
+            <div class="stage"></div>
+            <div class="top-lights"></div>
+            <div class="front-cloud"></div>
+            <div class="people1 jump1"></div>
+            <div class="mid-cloud"></div>
+            <img src="focus1.png" class="focus1 focusAnim">
+            <img src="focus2.png" class="focus2 focusAnim">
+            <img src="focus1.png" class="focus3 focusAnim">
+            <img src="focus2.png" class="focus4 focusAnim">
+            <div class="people2 jump3"></div>
+            <div class="people3 jump2"></div>
+            <div class="background-cloud"></div>
+            <div class="people4 jump1"></div>
+            <div class="people5 jump3"></div>
+            <div class="people6 jump4"></div>
+
+            <main>
+                <div class="char-container char-container-1">
+                    <div class="char"></div>
+                </div>
+                <div class="char-container char-container-2">
+                    <div class="char"></div>
+                </div>
+                <div class="char-container char-container-3">
+                    <div class="char"></div>
+                </div>
+                <div class="char-container char-container-4">
+                    <div class="char"></div>
+                </div>
+                <div class="char-container char-container-5">
+                    <div class="char"></div>
+                </div>
+                <div class="char-container char-container-6">
+                    <div class="char"></div>
+                </div>
+                <div class="char-container char-container-7">
+                    <div class="char"></div>
+                </div>
+                <div class="char-container char-container-8">
+                    <div class="char"></div>
+                </div>
+                <div class="char-container char-container-9">
+                    <div class="char"></div>
+                </div>
+                <div class="start-overlay" style="display: block;">
+                    <div class="start-info">
+                        <h1 style="display: none;">
+						<div><span class="metalUp metalAnimate">metal</span></div>
+						<div><span class="haterDown metalAnimate">Hater</span></div>
+					</h1>
+                        <div class="top-scores">
+                            <p class="yourScore" style="display: block;">Deine Punktzahl: <span>0</span></p>
+                        </div>
+                    </div>
+
+                    <div class="signup">
+                        <button class="start-button small">Nochmal spielen</button>
+                        <p>Herzlichen Glückwunsch Du kannst Dich jetzt zum Gewinnspiel anmelden</p>
+                        <form id="metalForm" class="signup-form" method="post" action="#" novalidate="novalidate">
+                            <label for="signup-name">Vor- und Nachname</label>
+                            <input id="signup-name" type="text" name="name" autocomplete="off" />
+                            <label for="signup-email">E-Mail-Adresse</label>
+                            <input id="signup-email" type="email" name="email" autocomplete="off" />
+                            <button class="submit-btn"><span>Jetzt anmelden</span></button>
+                        </form>
+                    </div>
+
+                    <button class="start-button" style="display: block;">Spiel starten</button>
+
+                </div>
+            </main>
+            <footer>
+                <div class="counterPoints">
+                    <p>Punkte: <span class="game-points">0</span></p>
+                </div>
+                <div class="speaker"></div>
+                <div class="counterTime">
+                    <p>Verbleibende Zeit: <span class="countdown" style="color: red;display:inline;">0</span></p>
+                </div>
+            </footer>
+            <audio id="player">
+                <source src="audio.mp3" type="audio/mp3" />
+                <source src="audio.ogg" type="audio/ogg" />
+            </audio>
+        </div>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script>
+        $(function() {
+
+            var game = {
+                points: 0
+            }
+
+            var characters = {
+                badGuy: {
+                    points: 25,
+                    image: [
+                        'elvis.png',
+                        'hipster.png',
+                        'geek.png',
+                        'hippie.png',
+                        'salaryman.png'
+                    ]
+                },
+                goodGuy: {
+                    points: -25,
+                    image: [
+                        'metal1.png',
+                        'metal2.png'
+                    ]
+                }
+            };
+
+            function compareNumbers(a, b) {
+                return b - a;
+            }
+
+            var splashAnimation = setInterval(function() {
+                if ($(window).width() > 650) {
+                    $('.metalUp').toggleClass('metalAnimate');
+                    $('.haterDown').toggleClass('metalAnimate');
+                }
+            }, 1000);
+
+            $('.start-button').on('click', enterGame);
+
+            function enterGame() {
+                $('.speaker:not(.speakerplay)').click();
+                $('.start-overlay').fadeOut();
+
+                $('.game-points').html(game.points);
+                $('.countdown').css("color", "white");
+                $('.metalGame').css('cursor', 'url(stick.png), auto');
+
+                var startTime = 25;
+                var gameTimer = setInterval(function() {
+                    var $countdown = $('.countdown');
+                    $countdown.html(startTime);
+                    if (startTime === 10) {
+                        $countdown.css("color", "yellow");
+                    } else if (startTime === 5) {
+                        $countdown.css("color", "orange");
+                    } else if (startTime === 0 && game.points < 200) {
+                        $countdown.css("color", "red");
+                        $('.target').hide();
+                        $('.yourScore span').html(game.points);
+                        game.points = 0;
+                        clearInterval(gameTimer);
+                        clearInterval(characterAppear);
+                        clearInterval(characterAppearAgain);
+                        $('.character-image').remove();
+                        $('.start-button').text("Nochmal spielen");
+                        $('.start-overlay').fadeIn();
+                        $('.metalGame').css('cursor', 'url(metalHand.png), auto');
+                        $('.yourScore').fadeIn();
+                    } else if (startTime === 0 && game.points >= 200) { //score over 200
+                        $countdown.css("color", "red");
+                        $('.target').hide();
+                        $('.yourScore span').html(game.points);
+                        game.points = 0;
+                        clearInterval(gameTimer);
+                        clearInterval(characterAppear);
+                        clearInterval(characterAppearAgain);
+                        $('.character-image').remove();
+                        $('.start-button').hide();
+                        $('.signup').show();
+                        $('.start-overlay').fadeIn();
+                        $('.metalGame').css('cursor', 'url(metalHand.png), auto');
+                        $('.yourScore').fadeIn();
+                    }
+                    startTime = startTime - 1;
+                }, 1000);
+
+                makeVisible();
+                setTimeout(makeVisible, 1000);
+                var characterAppear = setInterval(makeVisible, 1500);
+                var characterAppearAgain = setInterval(makeVisible, 2000);
+
+            }
+
+            var numberOfChars = $('.char').length;
+            var counter = 0;
+            var checkLastRand = [];
+
+            function makeVisible() {
+                var randomBadGuy = Math.floor(Math.random() * characters.badGuy.image.length);
+                var randomGoodGuy = Math.floor(Math.random() * characters.goodGuy.image.length);
+                var randomChar = Math.ceil(Math.random() * numberOfChars);
+
+                checkLastRand.unshift(randomChar);
+
+                if (checkLastRand[0] !== checkLastRand[1] && checkLastRand[0] !== checkLastRand[2]) {
+                    var badGuyImageSource = '<div data-points="' + characters.badGuy.points + '" class="character-image character-' + counter + '"><img src="' + characters.badGuy.image[randomBadGuy] + '"></div>';
+                    var goodGuyImageSource = '<div data-points="' + characters.goodGuy.points + '" class="character-image character-' + counter + '"><img src="' + characters.goodGuy.image[randomGoodGuy] + '"></div>';
+
+                    var randomImageSource = [badGuyImageSource, badGuyImageSource, badGuyImageSource, goodGuyImageSource];
+                    var randomImageIndex = Math.floor(Math.random() * randomImageSource.length);
+                    var characterToAppend = $(randomImageSource[randomImageIndex]);
+                    
+                    $('.char-container-' + randomChar +'>.char').append(characterToAppend);
+                    
+                    characterToAppend.fadeIn(0).animate({
+                        bottom: '200%'
+                    }, 700);
+                    
+                }
+
+
+                var characterDisappear = (function(currentCounter) {
+                    setTimeout(function() {
+                        $('.character-' + currentCounter).css('bottom', '200%').animate({
+                            bottom: '-100%'
+                        }, 700, function() {
+                            $(this).remove();
+                        });
+                    }, 1000)
+                })(counter);
+                counter = counter + 1;
+            }
+
+
+            $('.char').on('click', '.character-image', function() {
+                game.points = game.points + $(this).data('points');
+                $('.game-points').html(game.points);
+                if (($(this).data('points')) > 0) {
+                    $(this).html('<p class="points-awarded">+25</p><img src="blam.png" class="kapow">')
+                    setTimeout(function() {
+                        $('.kapow, .points-awarded').remove();
+                    }, 250);
+                } else {
+                    $(this).html('<p class="points-awarded lose-points">-25</p><img src="oops.png" class="sorry">')
+                    setTimeout(function() {
+                        $('.sorry, .points-awarded').remove();
+                    }, 250);
+                }
+
+            });
+
+        });
+
+
+        var getaudio = $('#player')[0];
+        var mouseovertimer;
+        var audiostatus = 'off';
+
+        $(document).on('click touchend', '.speaker', function() {
+            if (!$('.speaker').hasClass("speakerplay")) {
+                if (audiostatus == 'off') {
+                    $('.speaker').addClass('speakerplay');
+                    getaudio.load();
+                    getaudio.play();
+                    window.clearTimeout(mouseovertimer);
+                    audiostatus = 'on';
+                    return false;
+                } else if (audiostatus == 'on') {
+                    $('.speaker').addClass('speakerplay');
+                    getaudio.play()
+                }
+            } else if ($('.speaker').hasClass("speakerplay")) {
+                getaudio.pause();
+                $('.speaker').removeClass('speakerplay');
+                window.clearTimeout(mouseovertimer);
+                audiostatus = 'on';
+            }
+        });
+
+        $('#player').on('ended', function() {
+            $('.speaker').removeClass('speakerplay');
+            audiostatus = 'off';
+        });
+
+
+        $("#metalForm").submit(function(e) {
+
+            var url = "path/to/your/script.php";
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: $("#metalForm").serialize(),
+                success: function(data) {
+                    alert(data);
+                }
+            });
+
+            e.preventDefault();
+
+            $('.start-button').text("Nochmal spielen");
+            $('.start-button').show();
+            $('.signup').hide();
+        });
+
+    </script>
+
+</body>
+
+</html>

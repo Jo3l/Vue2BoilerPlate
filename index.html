@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <title>.:Indiza:.</title>
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600,700" rel="stylesheet">
+	<link rel="stylesheet" href="dist/keen-ui.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  </head>
+  <body>
+    <div id="app">
+    	
+    	<Toolbar></Toolbar>
+        <component :is="currentPage"></component>
+        
+    </div>
+
+    <script src="dist/build.js"></script>
+  </body>
+</html>
