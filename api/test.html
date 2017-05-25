@@ -1,0 +1,27 @@
+<html><body>
+	<style>
+		#ifr { width:100%; height:50%; border:1px dotted gray; }
+		textarea { width:100%; height:200px; }
+		input[type="submit"] { width:100%; height:80px; background:#af8; }
+	</style>
+	<form target="ifr" action="/api/index.php" method="POST" id="form">
+		Recurso: <select id="tabla" onchange="document.getElementById('form').action=this.value;">
+			<option>/api/index.php/usuari</option>
+			<option>/api/index.php/usuari/logout</option>
+			<option>/api/index.php/pagina</option>
+			<option>/api/index.php/article</option>
+			<option>/api/index.php/partida</option>
+			<option>/api/index.php/acte</option>
+		</select>
+		<input type="hidden" name="nom" value="usuario" />
+		<hr/>
+		ID: <input type="text" name="id" id="id" placeholder="id" />
+		<hr/>
+		JSON:
+		<br/>
+		<textarea name="json" id="json" placeholder="json object"></textarea>
+		<hr/>
+		<input type="submit" value="test"/>
+	</form>
+	<iframe frameborder="0" src="about:blank" id="ifr" name="ifr"></iframe>
+</body></html>

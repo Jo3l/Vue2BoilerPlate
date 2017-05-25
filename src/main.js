@@ -1,10 +1,13 @@
 import Vue from 'vue'
+import VueRouter from 'vue-router'
 import Toolbar from './components/Toolbar.vue'
 import Start from './components/Start.vue'
 import axios from 'axios'
 import css from './assets/less/app.less'
-import KeenUI from 'keen-ui';
+import KeenUI from 'keen-ui'
 
+
+Vue.use(VueRouter)
 Vue.use(KeenUI);
 
 

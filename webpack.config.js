@@ -1,6 +1,8 @@
 var path = require('path')
 var webpack = require('webpack')
 
+
+
 module.exports = {
   entry: './src/main.js',
   output: {
@@ -54,7 +56,9 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    noInfo: true
+    noInfo: true,
+    host: "192.168.1.101", // Your Computer Name
+    port: 8080
   },
   performance: {
     hints: false
@@ -82,3 +86,6 @@ if (process.env.NODE_ENV === 'production') {
     })
   ])
 }
+
+
+

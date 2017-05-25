@@ -1,0 +1,23 @@
+/user ? POST auth=pwd // authenticate
+/object ? // listall
+/object ? POST {id:"id"} // list one
+/object ? POST { data:{} } // insert
+/object ? POST { id:"id", data:{} } // update
+
+
+/usuari ? POST {"pwd":""} // autenticar
+/usuari/logout // desautenticar
+/noticia // llista totes les noticies (les primeres 20)
+/noticia/p/1 // torna la segona pagina de noticies (les segones 20)
+/noticia ? POST {elements} // nova noticia
+/noticia/id/{id} // torna una noticia amb eixe id
+/noticia/id/{id} ? POST { elements} // update noticia
+/noticia/c/{categoria} // torna totes les noticies que incloguen la categoria
+/noticia/t/{tag} // torna totes les noticies que incloguen el tag
+/noticia/u/{usuari} // torna totes les noticies d'un usuari
+/noticia/d/{20170524} // torna totes les noticie d'una data
+
+/noticia/p/4/u/32
+
+- el mateix canviant noticia per pagina
+

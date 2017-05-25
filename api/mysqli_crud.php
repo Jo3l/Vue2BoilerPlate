@@ -11,10 +11,10 @@ class Database{
      * means that they will only be available with the  
      * Database class 
      */ 
-    private $db_host = "192.168.42.50";  // Change as required 
-    private $db_user = "indizator";  // Change as required 
-    private $db_pass = "!Th3T3rm1n4t0R_";  // Change as required 
-    private $db_name = "indiza3";    // Change as required 
+    private $db_host = "127.0.0.1";  // Change as required 
+    private $db_user = "editor";  // Change as required 
+    private $db_pass = "extrabot22";  // Change as required 
+    private $db_name = "fedpival";    // Change as required 
     /* 
      * Extra variables that are required by other function such as boolean con variable 
      */ 
