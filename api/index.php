@@ -1,4 +1,7 @@
 <?php
+
+	session_start();
+
 	/// mostrar errors
 	//ini_set('display_errors', 1);
 	//ini_set('display_startup_errors', 1);
@@ -20,17 +23,9 @@
 	include('mysqli_crud.php');
 	$db=new Database();
 	$db->connect();
-	
-	session_start();
-    if (ini_get("session.use_cookies")) {
-        $params = session_get_cookie_params();
-        setcookie(session_name(), '', time() - 42000,
-            $params["path"], $params["domain"],
-            $params["secure"], $params["httponly"]
-        );
-    }
+
 	echo '-',print_r($_SESSION),'-';
-//if (!isset($_SESSION['id'])) if ($nom!='usuari') die('200 ACCESS ERROR');
+	if (!isset($_SESSION['id'])) if ($nom!='usuari') die('200 ACCESS ERROR');
 
 	$wheres= array('1=1');
 	$limit='';
@@ -74,14 +69,15 @@
 			if (!$json['pwd']) die('200 ACCESS ERROR');
 			@$db->sql("SELECT * FROM fedpival.usuario where pwd='".$json['pwd']."';");
 			$result= @$db->getResult();
-			if ($result['c']==1){
-				$_SESSION['id']= $result['id'];
+			if (count($result)>0){
+				$_SESSION['id']= $result[0]['id'];
 			}
 			echo json_encode($result);
 			exit ;
 		break;
 		case "noticia":
 	    	array_push( $wheres, "instr('noticia',categoria)>0" );
+	    	$nom= 'pagina';
 		break;
 		case "pagina":
 	    	array_push( $wheres, "instr('pagina',categoria)>0" );
