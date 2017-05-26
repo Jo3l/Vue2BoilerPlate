@@ -3,7 +3,44 @@
     <div class="container" id="start">
         <div class="col-group">
 
-
+		<carousel>
+		  <slide>
+		    Slide 1 Content
+		  </slide>
+		  <slide>
+		    Slide 2 Content
+		  </slide>
+		   <slide>
+		    Slide 3 Content
+		  </slide>
+		  <slide>
+		    Slide 4 Content
+		  </slide>
+		    <slide>
+		    Slide 5 Content
+		  </slide>
+		  <slide>
+		    Slide 6 Content
+		  </slide>
+		    <slide>
+		    Slide 7 Content
+		  </slide>
+		  <slide>
+		    Slide 8 Content
+		  </slide>
+		    <slide>
+		    Slide 9 Content
+		  </slide>
+		  <slide>
+		    Slide 10 Content
+		  </slide>
+		    <slide>
+		    Slide 11 Content
+		  </slide>
+		  <slide>
+		    Slide 12 Content
+		  </slide>
+		</carousel>
 
             <section class="col-12">
                 <div class="fieldset">
